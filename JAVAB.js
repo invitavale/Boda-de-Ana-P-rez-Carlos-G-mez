@@ -768,3 +768,22 @@ function copyValue(btn, value, label) {
         navigator.clipboard.writeText(plain).then(done).catch(fallback);
     } else { fallback(); }
 }
+
+// Portada: efecto parallax suave de los nombres al hacer scroll
+(function heroScrollEffect() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let ticking = false;
+    const update = () => {
+        ticking = false;
+        const names = document.querySelector('.hero-names');
+        if (!names || !document.body.classList.contains('intro-done')) return;
+        const h = window.innerHeight || 1;
+        const k = Math.min(1, Math.max(0, window.scrollY / (h * 0.7)));
+        names.classList.add('is-scrolling');
+        names.style.opacity = String(1 - k);
+        names.style.transform = 'translate(-50%, ' + (-k * 60) + 'px) scale(' + (1 - k * 0.06) + ')';
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+})();
