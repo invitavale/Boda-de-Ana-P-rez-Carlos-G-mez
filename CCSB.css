@@ -1899,3 +1899,65 @@ button[class*="carousel"] {
 }
 
 .hero-verse-ref { font-variant-numeric: lining-nums; }
+
+/* ================= Intro: sobre animado ================= */
+body.intro-active { overflow: hidden; height: 100svh; }
+.intro {
+    position: fixed; inset: 0; z-index: 10000;
+    background: #5a1220;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; outline: none;
+}
+.intro-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; background: #5a1220;
+}
+.intro-hint {
+    position: absolute; left: 0; right: 0; bottom: 11%;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    pointer-events: none; transition: opacity 0.5s ease;
+}
+.intro-hint-names {
+    font-family: 'Great Vibes', cursive; font-size: clamp(2.4rem, 10vw, 3.4rem);
+    color: #F3DFAE; text-shadow: 0 2px 3px rgba(0,0,0,0.45);
+}
+.intro-hint-cta {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif; font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: #FFF7E6; padding: 0.55rem 1.4rem;
+    border: 1px solid rgba(243,223,174,0.7); border-radius: 999px;
+    background: rgba(40,8,14,0.35);
+    animation: introPulse 2s ease-in-out infinite;
+}
+@keyframes introPulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.06); opacity: 1; }
+}
+.intro.is-playing { cursor: default; }
+.intro.is-playing .intro-hint { opacity: 0; }
+
+/* Velo de luz dorada: continúa el destello final del video */
+.intro-veil {
+    position: fixed; inset: 0; z-index: 10001; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle at 50% 46%, #FFF8E7 0%, #F6E2B3 35%, #E2C27E 70%, #C9A35A 100%);
+}
+.intro-sparkles {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    z-index: 10002; pointer-events: none;
+}
+body.is-revealing .intro { animation: introOut 0.9s ease forwards; }
+body.is-revealing .intro-veil { animation: veilFlash 3.4s ease forwards; }
+body.is-revealing .hero-section { animation: heroReveal 3.2s ease both; }
+@keyframes introOut { to { opacity: 0; } }
+@keyframes veilFlash {
+    0% { opacity: 0; } 12% { opacity: 1; } 45% { opacity: 0.9; } 100% { opacity: 0; }
+}
+@keyframes heroReveal {
+    0%, 30% { transform: scale(1.08); filter: brightness(1.4); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+body.intro-done .intro,
+body.intro-done .intro-veil { display: none; }
+/* Los nombres de la portada entran después de abrir el sobre */
+body.intro-active .hero-names { animation: none; opacity: 0; }
+body.is-revealing .hero-names { animation: heroNamesIn 1.6s ease-out 1.6s both; }

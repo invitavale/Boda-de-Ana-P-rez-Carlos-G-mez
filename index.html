@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carlos & Yenny - Invitación de Boda</title>
+    <link rel="preload" as="image" href="sobre-poster.jpg">
     <link rel="preload" as="image" href="foto0.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://www.google.com">
+        <link rel="preconnect" href="https://www.google.com">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CCSB.css">
         <style>
@@ -196,19 +196,19 @@
 
     </style>
 </head>
-<body>
+<body class="intro-active">
     <div class="main-center">
-        <!-- Modal de Bienvenida -->
-        <div id="welcomeModal" class="modal-overlay">
-            <div class="welcome-hero">
-                <h1 class="welcome-title welcome-title-sm">Bienvenidos a la<br/>invitación de Ana Pérez<br/>y Carlos Gómez</h1>
-                <p class="welcome-note">La música de fondo es parte de la experiencia</p>
-                <div class="welcome-actions">
-                    <button id="enterWithMusic" class="btn-gold" onclick="enterWithMusicClick()" disabled><span id="enterWithMusicLabel">Cargando música...</span></button>
-                    <button id="enterWithoutMusic" class="btn-gold-outline" onclick="enterWithoutMusicClick()">Ingresar sin música</button>
-                </div>
+        <!-- Intro: sobre animado -->
+        <div id="intro" class="intro" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
+            <video id="introVideo" class="intro-video" src="sobre.mp4" poster="sobre-poster.jpg" muted playsinline webkit-playsinline preload="auto"></video>
+            <div class="intro-hint">
+                <span class="intro-hint-names">Carlos &amp; Yenny</span>
+                <span class="intro-hint-cta">Toca para abrir</span>
             </div>
         </div>
+        <div class="intro-veil" aria-hidden="true"></div>
+        <canvas id="introSparkles" class="intro-sparkles" aria-hidden="true"></canvas>
+        <audio id="bgMusic" src="musica.mp3" preload="auto" loop></audio>
 
         <!-- Reproductor de música -->
         <div id="musicPlayer" class="music-player" style="display: none;">
@@ -219,7 +219,6 @@
                     <circle cx="6.5" cy="12" r="1" fill="#C8A45D"/>
                 </svg>
             </button>
-            <div id="youtube-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
         </div>
 
         <!-- Hero Section -->
