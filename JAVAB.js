@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // álbum de fotos compartido, formulario de RSVP, etc.).
 function openLocation(location) {
     const urls = {
-        ceremony: 'https://maps.app.goo.gl/cNEEudGY4vehB4pn7',
+        ceremony: 'https://maps.app.goo.gl/3XpH8tC4dLpD7zKj7',
         reception: 'https://maps.app.goo.gl/mJMF11EpTcgLGeJJ6'
     };
     const url = urls[location];
